@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Dentista – Clínica Odontológica | Volta Redonda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  :root {
+    --navy: #0a1f3c;
+    --blue: #1a4a8a;
+    --sky: #2e7dd1;
+    --light-blue: #5ba3e8;
+    --pale: #d6e8f7;
+    --ice: #f0f7ff;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --light-gray: #f8fafc;
+    --gold: #c9a84c;
+    --text: #1a2b3c;
+    --radius: 16px;
+    --shadow: 0 8px 40px rgba(10,31,60,0.12);
+    --shadow-lg: 0 20px 60px rgba(10,31,60,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 18px 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(46,125,209,0.1);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(10,31,60,0.1); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--white);
+  }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); font-weight: 700; line-height: 1.1; }
+  .logo-text span { display: block; font-family: 'DM Sans', sans-serif; font-size: .65rem; font-weight: 400; color: var(--sky); letter-spacing: .12em; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text); font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--sky); }
+
+  .nav-cta {
+    background: var(--sky); color: var(--white);
+    border: none; border-radius: 50px; padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: background .2s, transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(46,125,209,0.35);
+  }
+  .nav-cta:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,125,209,0.4); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(145deg, var(--navy) 0%, var(--blue) 55%, var(--sky) 100%);
+    display: flex; align-items: center;
+    padding: 120px 6% 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-bg-circle:nth-child(1) { width: 600px; height: 600px; top: -200px; right: -150px; animation-delay: 0s; }
+  .hero-bg-circle:nth-child(2) { width: 400px; height: 400px; bottom: -100px; left: -100px; animation-delay: 3s; }
+  .hero-bg-circle:nth-child(3) { width: 200px; height: 200px; top: 40%; right: 20%; animation-delay: 6s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    position: relative; z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px; padding: 8px 18px;
+    color: var(--pale); font-size: .8rem; font-weight: 500;
+    margin-bottom: 28px;
+    animation: fadeUp .8s ease both;
+  }
+  .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.7; transform:scale(1.3)} }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    color: var(--white); line-height: 1.15; font-weight: 700;
+    margin-bottom: 22px;
+    animation: fadeUp .9s .1s ease both;
+  }
+  .hero-title em { font-style: normal; color: var(--light-blue); }
+
+  .hero-desc {
+    color: rgba(255,255,255,0.78); font-size: 1.05rem; line-height: 1.75;
+    max-width: 480px; margin-bottom: 40px;
+    animation: fadeUp 1s .2s ease both;
+  }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 1s .3s ease both; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--white); color: var(--blue);
+    border-radius: 50px; padding: 16px 32px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: all .25s; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .btn-primary:hover { background: var(--pale); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+    border-radius: 50px; padding: 16px 32px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: all .25s; backdrop-filter: blur(4px);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.7); transform: translateY(-3px); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 50px;
+    animation: fadeUp 1s .4s ease both;
+  }
+  .stat { color: var(--white); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; display: block; }
+  .stat-label { font-size: .78rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: .1em; }
+
+  .hero-card-wrap { display: flex; justify-content: center; animation: fadeUp 1.1s .2s ease both; }
+  .hero-card {
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 28px; padding: 48px 40px;
+    width: 100%; max-width: 380px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .hero-card-title { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.4rem; margin-bottom: 8px; }
+  .hero-card-sub { color: rgba(255,255,255,0.6); font-size: .85rem; margin-bottom: 28px; }
+
+  .schedule-form { display: flex; flex-direction: column; gap: 14px; }
+  .schedule-form select, .schedule-form input {
+    width: 100%; padding: 14px 18px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px; color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: .9rem;
+    outline: none; transition: border-color .2s;
+  }
+  .schedule-form select option { background: var(--navy); color: var(--white); }
+  .schedule-form select:focus, .schedule-form input:focus { border-color: var(--light-blue); }
+  .schedule-form input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .btn-schedule {
+    width: 100%; padding: 16px; border: none;
+    background: linear-gradient(135deg, var(--light-blue), var(--sky));
+    color: var(--white); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem;
+    cursor: pointer; transition: all .25s;
+    box-shadow: 0 6px 20px rgba(46,125,209,0.4);
+    text-decoration: none; display: block; text-align: center;
+  }
+  .btn-schedule:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(46,125,209,0.5); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 96px 6%; }
+  .section-tag {
+    display: inline-block;
+    color: var(--sky); font-size: .78rem; font-weight: 600;
+    letter-spacing: .15em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--navy); line-height: 1.25; font-weight: 700;
+  }
+  .section-subtitle { color: var(--gray); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-top: 14px; }
+  .section-center { text-align: center; }
+  .section-center .section-subtitle { margin: 14px auto 0; }
+  .max-w { max-width: 1200px; margin: 0 auto; }
+
+  /* Fade in on scroll */
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── BRAND / ABOUT ── */
+  #sobre { background: var(--light-gray); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-box {
+    width: 100%; aspect-ratio: 4/3; border-radius: 24px;
+    background: linear-gradient(135deg, var(--pale), var(--sky));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7rem; box-shadow: var(--shadow-lg);
+  }
+  .about-accent {
+    position: absolute; bottom: -24px; right: -24px;
+    background: var(--navy); color: var(--white);
+    border-radius: 20px; padding: 24px 28px;
+    box-shadow: var(--shadow-lg);
+  }
+  .about-accent-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; display: block; }
+  .about-accent-text { font-size: .78rem; color: var(--pale); }
+
+  .about-features { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; }
+  .feature-item { display: flex; gap: 16px; align-items: flex-start; }
+  .feature-icon {
+    width: 46px; height: 46px; min-width: 46px; border-radius: 12px;
+    background: var(--pale); display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--sky);
+  }
+  .feature-title { font-weight: 600; color: var(--navy); font-size: .95rem; margin-bottom: 4px; }
+  .feature-desc { color: var(--gray); font-size: .88rem; line-height: 1.6; }
+
+  /* ── SERVICES ── */
+  #servicos { background: var(--white); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px;
+  }
+  .service-card {
+    background: var(--white); border: 1px solid rgba(46,125,209,0.12);
+    border-radius: 20px; padding: 32px 24px;
+    transition: all .3s; cursor: default; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    opacity: 0; transition: opacity .35s;
+    border-radius: 20px;
+  }
+  .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover .service-icon-wrap { background: rgba(255,255,255,0.15); color: var(--white); }
+  .service-card:hover .service-name, .service-card:hover .service-desc { color: var(--white); }
+
+  .service-icon-wrap {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: var(--pale); display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: var(--sky); margin-bottom: 20px; transition: background .3s, color .3s;
+    position: relative; z-index: 1;
+  }
+  .service-name { font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 8px; position: relative; z-index: 1; transition: color .3s; }
+  .service-desc { font-size: .85rem; color: var(--gray); line-height: 1.6; position: relative; z-index: 1; transition: color .3s; }
+
+  /* ── DESTAQUES ── */
+  #destaques { background: var(--navy); }
+  #destaques .section-title { color: var(--white); }
+  #destaques .section-tag { color: var(--light-blue); }
+  #destaques .section-subtitle { color: rgba(255,255,255,0.6); }
+
+  .highlights-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px;
+  }
+  .highlight-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px; padding: 40px 32px;
+    transition: all .35s; position: relative; overflow: hidden;
+  }
+  .highlight-card.featured {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--light-blue) 100%);
+    border-color: transparent;
+  }
+  .highlight-card:not(.featured):hover {
+    background: rgba(255,255,255,0.1); transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .highlight-badge {
+    display: inline-block; background: rgba(255,255,255,0.2);
+    color: var(--white); font-size: .7rem; font-weight: 600;
+    padding: 4px 12px; border-radius: 50px; letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .highlight-card.featured .highlight-badge { background: rgba(0,0,0,0.2); }
+  .highlight-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; color: rgba(255,255,255,0.85); }
+  .highlight-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); font-weight: 700; margin-bottom: 12px; }
+  .highlight-desc { color: rgba(255,255,255,0.7); font-size: .88rem; line-height: 1.65; margin-bottom: 24px; }
+  .highlight-card.featured .highlight-desc { color: rgba(255,255,255,0.88); }
+  .highlight-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--light-blue); font-weight: 600; font-size: .88rem;
+    text-decoration: none; transition: gap .2s;
+  }
+  .highlight-card.featured .highlight-link { color: var(--white); }
+  .highlight-link:hover { gap: 12px; }
+
+  /* ── AGENDAMENTO ── */
+  #agendamento { background: var(--ice); }
+  .scheduling-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .scheduling-form-box {
+    background: var(--white); border-radius: 28px; padding: 48px 40px;
+    box-shadow: var(--shadow);
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-label { display: block; font-weight: 600; font-size: .85rem; color: var(--navy); margin-bottom: 8px; }
+  .form-control {
+    width: 100%; padding: 14px 18px;
+    border: 1.5px solid rgba(46,125,209,0.2); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--text);
+    outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .form-control:focus { border-color: var(--sky); box-shadow: 0 0 0 4px rgba(46,125,209,0.1); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .btn-submit {
+    width: 100%; padding: 16px; border: none;
+    background: linear-gradient(135deg, var(--sky), var(--blue));
+    color: var(--white); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem;
+    cursor: pointer; transition: all .25s; margin-top: 8px;
+    box-shadow: 0 6px 20px rgba(46,125,209,0.4);
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(46,125,209,0.5); }
+
+  .scheduling-info { padding-left: 20px; }
+  .info-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); font-weight: 700; margin-bottom: 16px; }
+  .info-desc { color: var(--gray); line-height: 1.75; margin-bottom: 36px; }
+  .info-items { display: flex; flex-direction: column; gap: 20px; }
+  .info-item { display: flex; gap: 16px; align-items: center; }
+  .info-icon {
+    width: 50px; height: 50px; min-width: 50px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--sky), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--white); box-shadow: 0 4px 16px rgba(46,125,209,0.35);
+  }
+  .info-text strong { display: block; color: var(--navy); font-weight: 600; }
+  .info-text span { color: var(--gray); font-size: .88rem; }
+
+  /* ── DEPOIMENTOS ── */
+  #depoimentos { background: var(--white); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px;
+  }
+  .testimonial-card {
+    background: var(--light-gray); border-radius: 24px; padding: 36px 32px;
+    border: 1px solid rgba(46,125,209,0.08); transition: all .3s; position: relative;
+  }
+  .testimonial-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .testimonial-stars { color: #f59e0b; font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+  .testimonial-text { color: var(--text); font-size: .92rem; line-height: 1.75; margin-bottom: 24px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pale), var(--sky));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; font-weight: 700; color: var(--blue);
+  }
+  .author-name { font-weight: 700; color: var(--navy); font-size: .9rem; }
+  .author-tag { color: var(--gray); font-size: .78rem; }
+
+  .rating-banner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 24px; margin-top: 48px;
+    background: linear-gradient(135deg, var(--pale), var(--ice));
+    border-radius: 20px; padding: 28px 40px;
+    border: 1px solid rgba(46,125,209,0.15);
+  }
+  .rating-num { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--navy); font-weight: 700; }
+  .rating-stars { color: #f59e0b; font-size: 1.4rem; }
+  .rating-label { color: var(--gray); font-size: .88rem; margin-top: 4px; }
+  .rating-divider { width: 1px; height: 60px; background: rgba(46,125,209,0.2); }
+
+  /* ── LOCALIZAÇÃO ── */
+  #localizacao { background: var(--navy); }
+  #localizacao .section-title { color: var(--white); }
+  #localizacao .section-tag { color: var(--light-blue); }
+
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 56px;
+  }
+  .location-info { color: var(--white); }
+  .location-info p { color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 36px; font-size: .95rem; }
+  .location-items { display: flex; flex-direction: column; gap: 20px; margin-bottom: 36px; }
+  .location-item { display: flex; gap: 16px; align-items: flex-start; }
+  .loc-icon {
+    width: 44px; height: 44px; min-width: 44px; border-radius: 12px;
+    background: rgba(91,163,232,0.2); border: 1px solid rgba(91,163,232,0.3);
+    display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--light-blue);
+  }
+  .loc-label { font-weight: 600; color: var(--white); font-size: .9rem; }
+  .loc-value { color: rgba(255,255,255,0.6); font-size: .85rem; margin-top: 2px; }
+
+  .map-box {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+  }
+  .map-box iframe {
+    width: 100%; height: 380px; border: none; display: block;
+  }
+
+  /* ── CTA ── */
+  #cta {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--blue) 50%, var(--navy) 100%);
+    padding: 100px 6%; text-align: center;
+  }
+  .cta-inner { max-width: 700px; margin: 0 auto; }
+  .cta-label { color: var(--pale); font-size: .8rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 16px; }
+  .cta-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: var(--white); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+  .cta-desc { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.7; margin-bottom: 44px; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #25D366; color: var(--white);
+    border-radius: 50px; padding: 18px 36px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: all .25s; box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  }
+  .btn-whatsapp:hover { background: #1da851; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+  .btn-phone {
+    display: inline-flex; align-items: center; gap: 12px;
+    border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+    border-radius: 50px; padding: 18px 36px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: all .25s;
+  }
+  .btn-phone:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); transform: translateY(-3px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e; color: rgba(255,255,255,0.6);
+    padding: 64px 6% 32px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    max-width: 1200px; margin: 0 auto; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer-logo { display: flex; align-items: center; gap: 12px; }
+  .footer-desc { font-size: .85rem; line-height: 1.7; max-width: 280px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 4px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: rgba(255,255,255,0.6); text-decoration: none;
+    transition: background .2s, transform .2s, color .2s;
+  }
+  .social-btn:hover { background: var(--sky); color: var(--white); transform: translateY(-2px); }
+
+  .footer-col h4 { color: var(--white); font-weight: 600; font-size: .9rem; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: .85rem; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--light-blue); }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 28px; font-size: .8rem;
+  }
+  .footer-bottom a { color: var(--sky); text-decoration: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlights-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card-wrap { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-accent { bottom: -16px; right: -8px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .highlights-grid { grid-template-columns: 1fr; }
+    .scheduling-inner { grid-template-columns: 1fr; gap: 40px; }
+    .scheduling-form-box { padding: 32px 24px; }
+    .scheduling-info { padding-left: 0; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .location-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .rating-banner { flex-direction: column; gap: 16px; }
+    .rating-divider { display: none; }
+    section { padding: 72px 5%; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .cta-actions { flex-direction: column; }
+    .btn-whatsapp, .btn-phone { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-icon"><i class="ti ti-tooth" aria-hidden="true"></i></div>
+    <div class="logo-text">Meu Dentista<span>Clínica Odontológica</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#agendamento">Agendamento</a></li>
+    <li><a href="#depoimentos">Avaliações</a></li>
+    <li><a href="#localizacao">Localização</a></li>
+  </ul>
+  <a href="https://wa.me/552430261225" class="nav-cta" target="_blank">WhatsApp</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        4,9 estrelas no Google · Volta Redonda – RJ
+      </div>
+      <h1 class="hero-title">
+        O seu sorriso<br>merece o <em>melhor</em><br>cuidado.
+      </h1>
+      <p class="hero-desc">
+        Na Meu Dentista, combinamos tecnologia de ponta com um atendimento humano e acolhedor. Porque um sorriso saudável transforma não só a aparência — transforma a sua vida.
+      </p>
+      <div class="hero-actions">
+        <a href="#agendamento" class="btn-primary"><i class="ti ti-calendar" aria-hidden="true"></i> Agendar Consulta</a>
+        <a href="#servicos" class="btn-outline">Ver Serviços →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">+10</span><span class="stat-label">Anos de experiência</span></div>
+        <div class="stat"><span class="stat-num">4,9★</span><span class="stat-label">No Google</span></div>
+        <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Especialidades</span></div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <div class="hero-card-title">Agende Agora</div>
+        <div class="hero-card-sub">Rápido, fácil e sem complicação</div>
+        <div class="schedule-form">
+          <select>
+            <option value="" disabled selected>Selecionar serviço</option>
+            <option>Limpeza</option>
+            <option>Clareamento</option>
+            <option>Ortodontia</option>
+            <option>Implante</option>
+            <option>Canal</option>
+            <option>Prótese</option>
+            <option>Restauração</option>
+            <option>Pediatria</option>
+          </select>
+          <input type="text" placeholder="Seu nome completo" />
+          <input type="tel" placeholder="Seu WhatsApp" />
+          <a href="https://wa.me/552430261225?text=Olá! Gostaria de agendar uma consulta." class="btn-schedule" target="_blank">
+            Confirmar Agendamento
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="max-w">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-box">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="80" cy="80" r="72" fill="rgba(255,255,255,0.25)"/>
+            <path d="M55 48c-8 0-16 6-16 18 0 8 3 14 6 20 3 7 5 18 7 28 1 6 4 10 8 10s7-5 8-12l2-10 2 10c1 7 4 12 8 12s7-4 8-10c2-10 4-21 7-28 3-6 6-12 6-20 0-12-8-18-16-18-5 0-9 3-11 6a4 4 0 0 1-3 2 4 4 0 0 1-3-2c-2-3-6-6-11-6z" fill="white" opacity="0.9"/>
+            <circle cx="70" cy="64" r="4" fill="rgba(46,125,209,0.5)"/>
+            <circle cx="90" cy="64" r="4" fill="rgba(46,125,209,0.5)"/>
+          </svg>
+        </div>
+        <div class="about-accent">
+          <span class="about-accent-num">4,9 ★</span>
+          <div class="about-accent-text">Avaliação no Google</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-tag">Sobre nós</span>
+        <h2 class="section-title">Cuidamos da sua saúde bucal com <em style="color:var(--sky);font-style:normal">dedicação e precisão</em></h2>
+        <p class="section-subtitle">
+          Há mais de uma década presente em Volta Redonda, a Meu Dentista é referência em odontologia completa. Nossa equipe de especialistas está sempre atualizada com as mais modernas técnicas para oferecer resultados superiores com segurança e conforto.
+        </p>
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="ti ti-building-hospital" aria-hidden="true"></i></div>
+            <div>
+              <div class="feature-title">Clínica Completa</div>
+              <div class="feature-desc">8 especialidades em um único lugar. Da prevenção ao tratamento mais complexo, estamos prontos para cuidar de você.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+            <div>
+              <div class="feature-title">Atendimento Humanizado</div>
+              <div class="feature-desc">Cada paciente é único. Ouvimos, entendemos e personalizamos o tratamento de acordo com suas necessidades e expectativas.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="ti ti-microscope" aria-hidden="true"></i></div>
+            <div>
+              <div class="feature-title">Tecnologia de Ponta</div>
+              <div class="feature-desc">Equipamentos modernos para diagnósticos precisos, procedimentos mais rápidos e recuperação mais confortável.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="max-w">
+    <div class="section-center reveal">
+      <span class="section-tag">Especialidades</span>
+      <h2 class="section-title">Tudo o que você precisa<br>para sorrir com confiança</h2>
+      <p class="section-subtitle">Oferecemos uma ampla gama de tratamentos odontológicos para cuidar do seu sorriso em qualquer fase da vida.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-tooth" aria-hidden="true"></i></div>
+        <div class="service-name">Implante Dentário</div>
+        <div class="service-desc">Solução definitiva para dentes perdidos. Restitua função e estética com implantes de alta qualidade e durabilidade.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-sparkles" aria-hidden="true"></i></div>
+        <div class="service-name">Clareamento Dental</div>
+        <div class="service-desc">Dentes até 8 tons mais brancos em pouco tempo. Procedimento seguro, rápido e com resultado visível desde a primeira sessão.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-align-center" aria-hidden="true"></i></div>
+        <div class="service-name">Ortodontia</div>
+        <div class="service-desc">Aparelhos convencionais ou invisíveis para alinhar o seu sorriso. Planejamento personalizado para cada paciente.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-needle" aria-hidden="true"></i></div>
+        <div class="service-name">Tratamento de Canal</div>
+        <div class="service-desc">Salve o dente natural com segurança. Procedimento moderno, sem dor e com alta taxa de sucesso.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-wash" aria-hidden="true"></i></div>
+        <div class="service-name">Limpeza Profissional</div>
+        <div class="service-desc">Remoção de tártaro e placa bacteriana. Prevenção é a melhor forma de manter a saúde bucal em dia.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-tool" aria-hidden="true"></i></div>
+        <div class="service-name">Restauração</div>
+        <div class="service-desc">Recupere a estética e função de dentes danificados com resinas e materiais da mais alta qualidade.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-baby-carriage" aria-hidden="true"></i></div>
+        <div class="service-name">Odontopediatria</div>
+        <div class="service-desc">Atendimento especializado para crianças com ambiente acolhedor. Cuidamos do sorriso desde a primeira infância.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="ti ti-dental" aria-hidden="true"></i></div>
+        <div class="service-name">Prótese Dentária</div>
+        <div class="service-desc">Próteses fixas, removíveis ou sobre implantes. Recupere a mastigação, fala e autoestima com conforto e naturalidade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTAQUES -->
+<section id="destaques">
+  <div class="max-w">
+    <div class="section-center reveal">
+      <span class="section-tag">Mais Procurados</span>
+      <h2 class="section-title">Os tratamentos que nossos<br>pacientes mais amam</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.6)">Conheça os procedimentos que mais transformam sorrisos e vidas na nossa clínica.</p>
+    </div>
+    <div class="highlights-grid">
+      <div class="highlight-card reveal">
+        <span class="highlight-badge">Mais popular</span>
+        <span class="highlight-icon"><i class="ti ti-sparkles" aria-hidden="true"></i></span>
+        <div class="highlight-name">Clareamento a Laser</div>
+        <div class="highlight-desc">O tratamento mais requisitado da clínica. Em apenas uma sessão, você sai com um sorriso notavelmente mais branco e luminoso. Seguro, rápido e com resultados que impressionam.</div>
+        <a href="#agendamento" class="highlight-link">Agendar agora →</a>
+      </div>
+      <div class="highlight-card featured reveal">
+        <span class="highlight-badge">Destaque</span>
+        <span class="highlight-icon"><i class="ti ti-tooth" aria-hidden="true"></i></span>
+        <div class="highlight-name">Implante Premium</div>
+        <div class="highlight-desc">Nossa especialidade premium. Devolvemos o seu sorriso completo com implantes de titânio de qualidade internacional. Consulta de avaliação com análise 3D gratuita para novos pacientes.</div>
+        <a href="#agendamento" class="highlight-link">Consulta gratuita →</a>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="highlight-badge">Recomendado</span>
+        <span class="highlight-icon"><i class="ti ti-align-center" aria-hidden="true"></i></span>
+        <div class="highlight-name">Aparelho Invisível</div>
+        <div class="highlight-desc">Corrija o alinhamento dos dentes sem que ninguém perceba. Placas transparentes removíveis que se adaptam ao seu estilo de vida moderno e ativo.</div>
+        <a href="#agendamento" class="highlight-link">Saiba mais →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section id="agendamento">
+  <div class="max-w">
+    <div class="scheduling-inner">
+      <div class="scheduling-info reveal">
+        <span class="section-tag">Agendamento</span>
+        <div class="info-title">Marque sua consulta<br>de forma simples</div>
+        <p class="info-desc">Preencha o formulário ou entre em contato pelo WhatsApp. Nossa equipe responde rapidamente e confirma o melhor horário para você.</p>
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+            <div class="info-text">
+              <strong>Horário de Atendimento</strong>
+              <span>Segunda a Sexta, das 9h às 18h</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+            <div class="info-text">
+              <strong>Endereço</strong>
+              <span>Av. Amaral Peixoto, 212 – São João, Volta Redonda – RJ</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+            <div class="info-text">
+              <strong>WhatsApp</strong>
+              <span>(24) 3026-1225</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="ti ti-star" aria-hidden="true"></i></div>
+            <div class="info-text">
+              <strong>Avaliação no Google</strong>
+              <span>4,9 estrelas · Centenas de pacientes satisfeitos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scheduling-form-box reveal">
+        <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.4rem;margin-bottom:6px;">Solicitar Agendamento</h3>
+        <p style="color:var(--gray);font-size:.85rem;margin-bottom:28px;">Entraremos em contato para confirmar o horário.</p>
+        <div class="form-group">
+          <label class="form-label">Nome completo</label>
+          <input type="text" class="form-control" placeholder="Como prefere ser chamado(a)?">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">WhatsApp</label>
+            <input type="tel" class="form-control" placeholder="(00) 00000-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-control" placeholder="seu@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Serviço desejado</label>
+          <select class="form-control">
+            <option value="" disabled selected>Selecionar serviço</option>
+            <option>Limpeza</option>
+            <option>Clareamento</option>
+            <option>Ortodontia / Aparelho</option>
+            <option>Implante Dentário</option>
+            <option>Tratamento de Canal</option>
+            <option>Prótese Dentária</option>
+            <option>Restauração</option>
+            <option>Odontopediatria</option>
+            <option>Primeira Consulta / Avaliação</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensagem (opcional)</label>
+          <textarea class="form-control" rows="3" placeholder="Conte-nos um pouco sobre o que precisa..." style="resize:vertical;"></textarea>
+        </div>
+        <a href="https://wa.me/552430261225?text=Olá! Gostaria de agendar uma consulta na Meu Dentista." class="btn-submit" target="_blank">
+          Confirmar via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="max-w">
+    <div class="section-center reveal">
+      <span class="section-tag">Depoimentos</span>
+      <h2 class="section-title">O que nossos pacientes<br>falam sobre nós</h2>
+      <p class="section-subtitle">Mais de centenas de avaliações positivas no Google. Veja o que quem já viveu a experiência Meu Dentista tem a dizer.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Fiz o clareamento dental e fiquei impressionada com o resultado! Em uma única sessão, meu sorriso ficou completamente diferente. O atendimento foi incrível, me senti muito segura e bem cuidada durante todo o procedimento."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Ana Paula S.</div>
+            <div class="author-tag">Clareamento Dental</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Fiz meu implante dentário e o resultado superou todas as expectativas. A equipe foi extremamente profissional e me explicou cada etapa do processo. Recomendo a todos sem hesitar!"</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">C</div>
+          <div>
+            <div class="author-name">Carlos M.</div>
+            <div class="author-tag">Implante Dentário</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Sempre tive medo de dentista, mas na Meu Dentista fui tratada com tanta paciência e cuidado que isso mudou completamente. Minha filha também adora ir lá! A pediatria é maravilhosa."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <div class="author-name">Márcia F.</div>
+            <div class="author-tag">Odontopediatria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Precisei de urgência num canal e fui atendido no mesmo dia! Sem dor, rápido e com todo o suporte necessário. Hoje sou paciente fiel da clínica. Qualidade e atenção que raramente se encontra."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <div class="author-name">Roberto A.</div>
+            <div class="author-tag">Tratamento de Canal</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Coloquei aparelho invisível e em 8 meses meu sorriso ficou totalmente alinhado. Ninguém percebia que eu estava usando! O acompanhamento mensal é muito cuidadoso. Amei o resultado final."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">J</div>
+          <div>
+            <div class="author-name">Juliana P.</div>
+            <div class="author-tag">Ortodontia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Fiz prótese total e voltei a sorrir, comer e falar com confiança. O trabalho é impecável — parece dente natural! A Dra. me acompanhou em todo o processo com muito carinho e competência."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sebastião N.</div>
+            <div class="author-tag">Prótese Dentária</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rating-banner reveal">
+      <div>
+        <div class="rating-num">4,9</div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">Avaliação média</div>
+      </div>
+      <div class="rating-divider"></div>
+      <div style="text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);font-weight:700">Google Avaliações</div>
+        <div style="color:var(--gray);font-size:.88rem;margin-top:4px">Clínica Meu Dentista – Volta Redonda</div>
+      </div>
+      <div class="rating-divider"></div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);font-weight:700">100%</div>
+        <div style="color:var(--gray);font-size:.88rem;margin-top:4px">Recomendariam a clínica</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO -->
+<section id="localizacao">
+  <div class="max-w">
+    <div class="location-grid">
+      <div class="location-info reveal">
+        <span class="section-tag">Onde estamos</span>
+        <h2 class="section-title" style="color:var(--white);">Venha nos<br>visitar</h2>
+        <p>Estamos em uma localização de fácil acesso no coração de Volta Redonda. Venha nos visitar — será um prazer cuidar do seu sorriso.</p>
+        <div class="location-items">
+          <div class="location-item">
+            <div class="loc-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+            <div>
+              <div class="loc-label">Endereço</div>
+              <div class="loc-value">Av. Amaral Peixoto, 212 – São João<br>Volta Redonda – RJ, 27253-220</div>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="loc-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+            <div>
+              <div class="loc-label">Horário de Funcionamento</div>
+              <div class="loc-value">Segunda a Sexta: 9h às 18h<br>Sábados e Domingos: Fechado</div>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="loc-icon"><i class="ti ti-phone" aria-hidden="true"></i></div>
+            <div>
+              <div class="loc-label">Contato</div>
+              <div class="loc-value">(24) 3026-1225 · WhatsApp disponível</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/552430261225?text=Olá! Gostaria de saber como chegar à clínica." class="btn-primary" target="_blank" style="background:var(--sky);color:var(--white);display:inline-flex;gap:10px;align-items:center;">
+          <i class="ti ti-navigation" aria-hidden="true"></i> Como chegar
+        </a>
+      </div>
+      <div class="map-box reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.4!2d-44.0961!3d-22.5233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDMxJzIzLjkiUyA0NMKwMDUnNDUuOSJX!5e0!3m2!1spt-BR!2sbr!4v1"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Localização Meu Dentista">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div class="cta-label">Não deixe para amanhã</div>
+    <h2 class="cta-title">Seu sorriso perfeito começa com uma ligação</h2>
+    <p class="cta-desc">
+      Agende agora a sua consulta de avaliação. Nossa equipe está pronta para criar o plano de tratamento ideal para o seu sorriso — com todo o cuidado e atenção que você merece.
+    </p>
+    <div class="cta-actions">
+      <a href="https://wa.me/552430261225?text=Olá! Vi o site e gostaria de agendar uma consulta na Meu Dentista." class="btn-whatsapp" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a href="tel:+552430261225" class="btn-phone">
+        <i class="ti ti-phone" aria-hidden="true"></i> (24) 3026-1225
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="logo-icon" style="width:36px;height:36px;font-size:18px;"><i class="ti ti-tooth" aria-hidden="true"></i></div>
+        <div class="logo-text" style="color:var(--white);">Meu Dentista<span style="color:var(--light-blue)">Clínica Odontológica</span></div>
+      </div>
+      <p class="footer-desc">Cuidando de sorrisos com dedicação, tecnologia e humanidade há mais de uma década em Volta Redonda – RJ.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" title="Instagram" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
+        <a href="https://wa.me/552430261225" class="social-btn" title="WhatsApp" target="_blank" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></a>
+        <a href="#" class="social-btn" title="Facebook" aria-label="Facebook"><i class="ti ti-brand-facebook" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Implante Dentário</a></li>
+        <li><a href="#servicos">Clareamento</a></li>
+        <li><a href="#servicos">Ortodontia</a></li>
+        <li><a href="#servicos">Canal</a></li>
+        <li><a href="#servicos">Limpeza</a></li>
+        <li><a href="#servicos">Restauração</a></li>
+        <li><a href="#servicos">Pediatria</a></li>
+        <li><a href="#servicos">Prótese</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Clínica</h4>
+      <ul>
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#depoimentos">Avaliações</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="tel:+552430261225">(24) 3026-1225</a></li>
+        <li><a href="https://wa.me/552430261225" target="_blank">WhatsApp</a></li>
+        <li><a href="#">contato@meudentista.com.br</a></li>
+      </ul>
+      <div style="margin-top:20px;font-size:.8rem;line-height:1.6;">
+        <strong style="color:rgba(255,255,255,0.7);">Endereço</strong><br>
+        Av. Amaral Peixoto, 212<br>
+        São João, Volta Redonda – RJ<br>
+        CEP: 27253-220
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Meu Dentista – Clínica Odontológica. Todos os direitos reservados.</span>
+    <span>Desenvolvido com cuidado em Volta Redonda – RJ</span>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const cta = document.querySelector('.nav-cta');
+    if (links) {
+      const open = links.style.display === 'flex';
+      links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:absolute;top:76px;left:0;width:100%;background:white;padding:24px 6%;gap:20px;box-shadow:0 8px 32px rgba(0,0,0,0.1);z-index:99;';
+      if (cta) cta.style.display = open ? '' : 'block';
+    }
+  }
+</script>
+</body>
+</html>
